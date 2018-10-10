@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			#box{
+				width:500px;
+				height:500px;
+				border:1px solid black;
+				margin:50px auto;
+			}
+			input{
+				display:block;
+				width:400px;
+				height:50px;
+				margin:30px auto 0;
+				font-size:20px;
+				color:#ccc;
+			}
+			p{
+				width:400px;
+				height:20px;
+				margin:0px auto;
+				font-size:16px;
+				font-style:italic;
+				line-height:20px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<form action="" method="post">
+				<input type="text" name="" id="name" value="QQ账号:" maxlength="16" />
+				<input type="password" name="" id="password" value="" placeholder="密码" maxlength="16"/>
+				<p></p>
+				<input type="button" name="" id="join" value="登录" />
+				<input type="button" name="" id="login" value="点击注册" />
+			</form>
+		</div>
+		
+
+		<script type="text/javascript">
+//			username=1111111111; password1=111111111; password2=111111111
+			var me=document.getElementById('name');
+			var passage=document.getElementById('password');
+			var jin=document.getElementById('join');
+			var hint=document.getElementsByTagName('p')[0];
+			var ologin=document.getElementById('login');
+//			key={username:"1234567",password1:"1111111"}
+//			var arr=document.cookie.split('; ');
+			var arr=document.cookie.split('=');
+			console.log(arr)
+			list=eval('('+arr[1]+')'),
+			console.log(list.username)
+			console.log(list.password1)
+////			username=1111111111','password1=111111111','password2=111111111			
+//				var list0=arr[0].split('=');
+//				var list1=arr[1].split('=');
+//				var list2=arr[2].split('=');
+//				console.log(list0)
+////			username','1111111111','password1','111111111','password2','11111111	
+//var te=list.split(',');
+//console.log(te)
+			function fn(obj,a){
+				var flag=false;
+				obj.onfocus=function(){
+					if(!flag){
+						obj.value='';
+					}
+				}
+				obj.onblur=function(){
+					if(obj.value==''){
+						obj.value='QQ账号';
+						a.innerHTML='请输入QQ号'
+					}else if(isNaN(obj.value)){
+						a.innerHTML='请输入正确QQ号';
+					}else{
+						if(obj.value==list.username){
+							a.innerHTML='输入正确';
+							flag=true;
+						}else{
+							a.innerHTML='请重新输入';
+						}
+					}
+				}
+			
+			}
+			fn(me,hint);
+			function fn0(obj,a){
+				var flag=false;
+				obj.onfocus=function(){
+					if(!flag){
+						obj.value='';
+					}
+				}
+				obj.onblur=function(){
+					if(obj.value==''){
+						a.innerHTML='请输入密码'
+					}else if(isNaN(obj.value)){
+						a.innerHTML='请输入正确密码';
+					}else if(me.value==list.username){
+						if(obj.value==list.password1){
+							a.style.color='yellow';
+							a.innerHTML='输入正确';
+							flag=true;
+						}else{
+							a.innerHTML='请重新输入';
+						}
+					}
+				}
+			
+			}
+			fn0(passage,hint);
+			
+			function fn9(obj,a){
+				obj.onclick=function(){
+					if(a.innerHTML=='输入正确'&&a.style.color=='yellow'){
+						location.href="https://home.firefoxchina.cn/";
+					}
+				}
+			}
+			fn9(jin,hint);
+			
+			
+			
+			function fn8(obj){
+				obj.onclick=function(){
+					location.href="注册.html";
+				}
+			}
+			fn8(ologin);
+			
+			
+		</script>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</body>
+</html>
